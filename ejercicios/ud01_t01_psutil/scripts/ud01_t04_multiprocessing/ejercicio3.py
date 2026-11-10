@@ -10,13 +10,18 @@ def generarNumeros(cantidad, q):  #recibe la cantidad (primer arg), y la cola (s
     for ay in range(0,cantidad + int(cantidad/2)):
         ay = random.randint(0,10)
         q.put(ay) #lo pone en la cola del paro fuck nigga
+    q.put(None)
 
 def recibirNumeros(q):
     print("Elementos de la cola: ")
     suma = 0
-    while not q.empty():
-        suma += q.get()
-        print(q.get())
+    while True:
+        numero = q.get()
+
+        if numero is None:
+            break
+        suma += numero
+        print(numero)
     print(f"Suma total: {suma}")
         
 	
@@ -29,10 +34,6 @@ if __name__ == '__main__':
 
     p1.start()
     p1.join()
-
     p2.start()
-    
-    
-
     p2.join()
   
