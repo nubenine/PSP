@@ -24,9 +24,26 @@
 import threading
 import time
 
-global contador
+contador = 0
 class Ejercicio(threading.Thread):
+    
     def __init__(self, cadena):
         super().__init__(name=cadena)
+        
 
+    
     def run(self):
+        global contador
+        for i in range(10):
+            contador+=1
+            print(f"{contador}: {self.name}")
+            
+
+if __name__ == "__main__":
+    yes = Ejercicio("YES")
+    no = Ejercicio("NO")
+    yes.start()
+    no.start()
+
+    yes.join()
+    no.join()
