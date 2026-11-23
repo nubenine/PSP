@@ -38,6 +38,7 @@ class NumeroCuatro(threading.Thread):
         print(f"Thread{self.name} empieza...")
         for i in range(self.inicio, self.fin):
             print(f"Thread{self.name} dice: {i}.")
+        print(f"Thread{self.name} acaba...")
 
 if __name__ == "__main__":
     hiloA = NumeroCuatro("A", 1, 10)
