@@ -25,9 +25,9 @@ class Factorial(threading.Thread):
             resultado = 1
             print(f"Factorial de {self.num}: {resultado}")
         else :
-            resultado = 0
-            for i in range(1,self.num):
-                resultado += self.num*(self.num-i)
+            resultado = 1
+            for i in range(1,self.num +1):
+                resultado *=i
             print(f"Factorial de {self.num}: {resultado}")
 
 class Fibonacci(threading.Thread):
@@ -35,24 +35,20 @@ class Fibonacci(threading.Thread):
         super().__init__()
         self.num = num
     def run(self):
-        if self.num==0:
-            resultado = 0
-            print(f"Fibonacci de {self.num}: {resultado}")
-        elif self.num==1:
-            resultado=1
-            print(f"Fibonacci de {self.num}: {resultado}")
-        else:
-            resultado = 0
-            for i in range(1,self.num):
-                resultado += (self.num-i) + (self.num-(i+1))
-            print(f"Fibonacci de {self.num}: {resultado}")
+        a = 0
+        b = 1
+        
+        for i in range(self.num):
+            resultado = a + b
+            a = b
+            b = resultado
+        print(f"Fibonacci de {self.num}: {a}")
 
 if __name__=="__main__":
     hilo1 = Factorial(8)
     hilo2 = Fibonacci(13)
 
     hilo1.start()
-    hilo1.join()
-
     hilo2.start()
+    hilo1.join()
     hilo2.join()
